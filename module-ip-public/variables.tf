@@ -1,7 +1,7 @@
 #----------------------------variable ip public for  ---------------------------
 
 variable "name" {
-  default     = ["public-ip", "public-ip2", "public-ip3"]
+  default     = "public-ip"
 }
 #----------------------ressource-groupe-------------------------------------
 
