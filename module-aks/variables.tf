@@ -62,9 +62,6 @@ variable "max_count" {
   default = "3"
 }
 
-variable "kubernetes_version" {
-    default = "1.14.8"
-}
 
 variable "name_node_pool" {
     default = "aks"
