@@ -14,16 +14,17 @@ resource "azurerm_network_interface" "network_interface_card" {
     name                      = "${element(var.host_names, count.index)}NIC"
     location                  = "${var.location}"
     resource_group_name       = "${var.resource_group}"
-    network_security_group_id = "${var.nsg_id}"
+    network_security_group_id = "${element(var.nsg_id, count.index)}" #"${var.nsg_id}"
     count   =   "${var.nb_instances}"
 
     ip_configuration {
         name                          = "${element(var.host_names, count.index)}Configuration"
-        subnet_id                     = "${var.subnet_id}"
+        subnet_id                     = "${element(var.subnet_id, count.index)}"
         private_ip_address_allocation = "Dynamic"
         #private_ip_address            = "${element(var.private_ip_addresses, count.index)}"
         #public_ip_address_id          = "${element(azurerm_public_ip.public_ip.*.id, count.index)}"
         #load_balancer_backend_address_pools_ids = ["${element(var.backend_address_pools_ids, count.index)}"]
+       # count                          = "${length(var.subnet_id)}"
     }
 }
 

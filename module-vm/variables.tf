@@ -18,7 +18,8 @@ variable "resource_group" {
 #}
 
 variable "nsg_id" {
-    description = "Specify Network Security Group ID attached to the subnet." 
+    description = "Specify Network Security Group ID attached to the subnet."
+    type    = "list"
 }
 
 variable "availability_set_name" {
@@ -27,7 +28,8 @@ variable "availability_set_name" {
 }
 
 variable "subnet_id" {
-    description = "Specify ID of the subnet."    
+    description = "Specify ID of the subnet."  
+    default     = ["subnet1", "subnet2", "subnet3"]
 }
 
 variable "nb_instances" {
