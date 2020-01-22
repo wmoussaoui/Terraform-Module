@@ -27,7 +27,8 @@ variable "availability_set_name" {
 }
 
 variable "subnet_id" {
-    description = "Specify ID of the subnet."    
+    description = "Specify ID of the subnet."  
+    default     = ["subnet1", "subnet2", "subnet3"]
 }
 
 variable "nb_instances" {
