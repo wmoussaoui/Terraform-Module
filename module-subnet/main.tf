@@ -12,29 +12,30 @@ resource "azurerm_subnet" "default" {
 resource "azurerm_network_security_group" "sg" {
   name                = var.sg_name[count.index]
   location            = var.location_var
-  resource_group_name = var.rg_name
+  resource_group_name = element(var.sg_resource_group_name, count.index)
   count                = length(var.sg_name)
-  security_rule {
-    name                       = "rule-swf-fff"
-    priority                   = 100
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "*"
-    source_address_prefix      = "*"
-    destination_address_prefix = "*"
-  }
-    tags = {
-        ApplicationID = var.applicationid_tags
-        Environment = var.environnement_tags
-        Version = var.version_tags
-        Owner = var.owner_tags
-        Department = var.departement_tags
-        CostCenter = var.costcenter_tags
-        Customer = var.customer_tags
-        Project = var.projet_tags
-  }
+  tags                     = element(var.tags, count.index)
 }   
 
+resource "azurerm_network_security_rule" "custom_rules" {
+  count                       = length(var.custom_rules)
+  name                        = lookup(var.custom_rules[count.index], "name", "default_rule_name")
+  priority                    = lookup(var.custom_rules[count.index], "priority")
+  direction                   = lookup(var.custom_rules[count.index], "direction", "Any")
+  access                      = lookup(var.custom_rules[count.index], "access", "Allow")
+  protocol                    = lookup(var.custom_rules[count.index], "protocol", "*")
+  source_port_ranges          = split(",", replace(lookup(var.custom_rules[count.index], "source_port_range", "*"), "*", "0-65535"))
+  destination_port_ranges     = split(",", replace(lookup(var.custom_rules[count.index], "destination_port_range", "*"), "*", "0-65535"))
+  source_address_prefix       = lookup(var.custom_rules[count.index], "source_address_prefix", "*")
+  destination_address_prefix  = lookup(var.custom_rules[count.index], "destination_address_prefix", "*")
+  description                 = lookup(var.custom_rules[count.index], "description", "Security rule for ${lookup(var.custom_rules[count.index], "name", "default_rule_name")}")
+  resource_group_name         = element(var.rule_resource_group_name, count.index)
+  network_security_group_name =  azurerm_network_security_group.sg.*.name
+}
+
+#---- create resource security group association ------
+resource "azurerm_subnet_network_security_group_association" "ass" {
+  subnet_id                 = azurerm_subnet.default.*.id
+  network_security_group_id = azurerm_network_security_group.sg.*.id
+}
 
