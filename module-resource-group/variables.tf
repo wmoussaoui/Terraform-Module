@@ -9,8 +9,15 @@ variable "name" {
 }
 
 variable "tags" {
-  type = map(string)
+  #type = map(string)
   description = "List of tags to assign to the resource group."
-  default = {}
+  default = [{
+        "code_appli" = "fff", 
+        "composant_role" = "fff", 
+        "environnement" = "fff",
+        "Version" = "fff", 
+        "proprietaire" = "fff",
+        "projet" = "fff",
+        "confidentialite" = "fff"}]
 }
 
