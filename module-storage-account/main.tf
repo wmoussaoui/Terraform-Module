@@ -6,6 +6,6 @@ resource "azurerm_storage_account" "storage-account-hub" {
   account_replication_type = var.account_replication_type
   enable_advanced_threat_protection = true
   count    = length(var.name)
-  tags                     = tags     = element(var.tags, count.index)
+  tags                     = element(var.tags, count.index)
   }
 
