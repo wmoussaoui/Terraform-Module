@@ -8,9 +8,8 @@ variable "location" {
   default     = "westeurope"
 }
 
-variable "service_name" {
-  description = "Name of the service or function to which this resource belongs - defaults to `sampleservice`"
-  default     = "sampleservice"
+variable "name" {
+  default     = ["sampleservice"]
 }
 
 variable "environment" {
@@ -25,11 +24,19 @@ variable "fault_domain_count" {
 
 variable "resource_group_name" {
   description = "(Required) Specifies the name of the resource group the Virtual Network is located in.  This will be created dynamically if not explicitly set"
-  default     = ""
+  default     = []
 }
 
 variable "tags" {
-  description = "Map of additional tags to apply to the resources"
-  type        = "map"
-  default     = {}
+  description = "The tags to associate with your network and subnets."
+  #type        = map(string)
+
+  default = [{
+        "code_appli" = "fff", 
+        "composant_role" = "fff", 
+        "environnement" = "fff",
+        "Version" = "fff", 
+        "proprietaire" = "fff",
+        "projet" = "fff",
+        "confidentialite" = "fff"}]
 }
