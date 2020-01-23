@@ -1,9 +1,9 @@
 
 variable "walid" {
-  default     = azurerm_subnet.default.*.id
+  default     = "azurerm_subnet.default.*.id"
 }
 variable "walid1" {
-  default     = azurerm_network_security_group.sg.*.id
+  default     = "azurerm_network_security_group.sg.*.id"
 }
 
 
