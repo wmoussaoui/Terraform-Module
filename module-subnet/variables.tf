@@ -1,7 +1,7 @@
 variable "address_prefix" {
- default = []
- 
+  default     = ["10.0.0.0/24"]
 }
+
 variable "name" {
  default = []
  
