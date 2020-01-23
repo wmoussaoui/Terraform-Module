@@ -1,6 +1,6 @@
 variable "address_space" {
   description = "The network prefix / CIDR range in use by this VNet"
-  default     = ["10.0.0.0/8"]
+  default     = []
 }
 
 variable "location" {
