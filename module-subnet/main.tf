@@ -40,11 +40,5 @@ resource "azurerm_subnet_network_security_group_association" "ass" {
 }
 
 
-provider "azurerm" {
-  version = ">= 1.39.0"
-}
 
-terraform {
-  required_version = ">= 0.12.0"
-}
 
