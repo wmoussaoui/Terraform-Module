@@ -10,6 +10,6 @@
   }
 #------------------------storage-accounte-ressource------------------------------------- 
   variable "storage_account_name" {
-  type = string
-  default = "rg-hub-virtual-network" 
+  #type = string
+  default = [] 
   }
