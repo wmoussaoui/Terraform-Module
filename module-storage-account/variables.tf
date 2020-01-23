@@ -29,11 +29,15 @@
 #------------------------------ tags-------------------------------
 variable "tags" {
   description = "The tags to associate with your network and subnets."
-  type        = map(string)
+  #type        = map(string)
 
-  default = {
-    tag1 = ""
-    tag2 = ""
-  }
+  default = [{
+        "code_appli" = "fff", 
+        "composant_role" = "fff", 
+        "environnement" = "fff",
+        "Version" = "fff", 
+        "proprietaire" = "fff",
+        "projet" = "fff",
+        "confidentialite" = "fff"}]
 }
 
