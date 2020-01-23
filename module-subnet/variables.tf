@@ -1,3 +1,13 @@
+
+variable "walid" {
+  default     = azurerm_subnet.default.*.id
+}
+variable "walid1" {
+  default     = azurerm_network_security_group.sg.*.id
+}
+
+
+
 variable "address_prefix" {
   default     = ["10.0.0.0/24"]
 }
