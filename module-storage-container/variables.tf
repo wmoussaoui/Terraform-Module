@@ -6,7 +6,6 @@
 #------------------------container-account-ressource-------------------------------------
   variable "name" {
   description = "Name of the Resource container account"
-  type = string
   default = ["tfstate-hub"]
   }
 #------------------------storage-accounte-ressource------------------------------------- 
