@@ -28,4 +28,24 @@ variable "custom_rules" {
   type        = list(any)
   default     = []
 }
+variable "sg_name" {
+ default = []
+
+}
+variable "location_var" {
+ default = "West Europe"
+}
+
+variable "sg_resource_group_name" {
+ default = []
+}
+variable "rule_resource_group_name" {
+ default = []
+}
+
+
+
+
+ 
+
   
