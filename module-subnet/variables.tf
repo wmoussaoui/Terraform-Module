@@ -43,6 +43,7 @@ variable "custom_rules" {
   default     = []
 }
 variable "sg_name" {
+  type = any
 
 }
 variable "location_var" {
