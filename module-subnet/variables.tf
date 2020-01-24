@@ -16,7 +16,8 @@ variable "address_prefix" {
 }
 
 variable "name" {
- default = [{}]
+  type = list(any) 
+ default = []
  
 }
 variable "resource_group_name" {}
