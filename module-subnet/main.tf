@@ -12,7 +12,7 @@ resource "azurerm_subnet" "default" {
 
 #--------- create resource security group ---------
 resource "azurerm_network_security_group" "sg" {
-  name                = element(var.sg_name, count.index)
+  name                = var.sg_name[count.index]
   location            = var.location_var
   resource_group_name = element(var.sg_resource_group_name, count.index)
   count                = length(var.sg_name)  
@@ -40,7 +40,7 @@ resource "azurerm_network_security_rule" "custom_rules" {
 
 resource "azurerm_subnet_network_security_group_association" "ass" {
     
-  count                     = length(var.name)  
+  count                     = length(var.sg_name)  
   subnet_id                 = "${element(azurerm_subnet.default.*.id, count.index)}" #"${azurerm_subnet.default.*.id}"
   network_security_group_id = "${element(azurerm_network_security_group.sg.*.id, count.index)}" #"${azurerm_network_security_group.sg.*.id}"
 }
