@@ -4,7 +4,7 @@ resource "azurerm_subnet" "default" {
     resource_group_name  = element(var.resource_group_name, count.index)
     virtual_network_name = var.virtual_network_name
     count                = length(var.name)
-    network_security_group_id = azurerm_network_security_group.sg.*.id #"${lookup(var.nsg_ids,var.name[count.index],"")}"
+    network_security_group_id = "${azurerm_network_security_group.sg.*.id}" #"${lookup(var.nsg_ids,var.name[count.index],"")}"
     
 }
 
@@ -33,7 +33,7 @@ resource "azurerm_network_security_rule" "custom_rules" {
   destination_address_prefix  = lookup(var.custom_rules[count.index], "destination_address_prefix", "*")
   description                 = lookup(var.custom_rules[count.index], "description", "Security rule for ${lookup(var.custom_rules[count.index], "name", "default_rule_name")}")
   resource_group_name         = element(var.rule_resource_group_name, count.index)
-  network_security_group_name =  azurerm_network_security_group.sg.*.name
+  network_security_group_name =  "${azurerm_network_security_group.sg.*.name}"
 }
 
 #---- create resource security group association ------
