@@ -1,4 +1,16 @@
 
+
+variable "nsg_ids" {
+  description = "A map of subnet name to Network Security Group IDs"
+  type        = map(string)
+
+  default = {
+    subnet1 = "nsgid1"
+    subnet3 = "nsgid3"
+  }
+}
+
+
 variable "address_prefix" {
   default     = ["10.0.0.0/24"]
 }
