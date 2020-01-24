@@ -42,10 +42,10 @@ variable "tags" {
   #type        = list(any)
  # default     = []
 #}
-#variable "sg_name" {
- # type = any
+variable "sg_name" {
+  type = any
 
-#}
+}
 variable "location_var" {
  default = "West Europe"
 }
