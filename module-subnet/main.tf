@@ -42,7 +42,7 @@ resource "azurerm_network_security_group" "sg" {
 resource "azurerm_subnet_network_security_group_association" "ass" {
     
   count                     = length(var.sg_name)  
-  subnet_id                 = "${azurerm_subnet.default.*.id}"        #"${element(azurerm_subnet.default.*.id, count.index)}" 
+  subnet_id                 = "${element(azurerm_subnet.default.*.id, count.index)}" 
   network_security_group_id = "${element(azurerm_network_security_group.sg.*.id, count.index)}" 
 }
 
