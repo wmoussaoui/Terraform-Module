@@ -18,7 +18,7 @@ resource "azurerm_subnet" "default" {
  # count                = length(var.sg_name) 
  # tags                     = element(var.tags, count.index)
     
-}   
+#}   
 
 #resource "azurerm_network_security_rule" "custom_rules" {
 #  count                       = length(var.custom_rules)
