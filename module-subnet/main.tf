@@ -3,7 +3,7 @@ resource "azurerm_subnet" "default" {
     address_prefix       = element(var.address_prefix, count.index) 
     resource_group_name  = element(var.resource_group_name, count.index)
     virtual_network_name = var.virtual_network_name
-    count                = length(var.name)
+    count                = length(var.sg_name)
     network_security_group_id = "${element(azurerm_network_security_group.sg.*.id, count.index)}"  #element(var.sg_name, count.index)
     
 }
