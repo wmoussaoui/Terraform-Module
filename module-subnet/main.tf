@@ -6,7 +6,7 @@ resource "azurerm_subnet" "default" {
     count                = length(var.name)
     #network_security_group_id = "${element(azurerm_network_security_group.sg.*.id, count.index)}"
     
-}
+#}
 
 
 
