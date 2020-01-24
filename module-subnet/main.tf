@@ -4,7 +4,7 @@ resource "azurerm_subnet" "default" {
     resource_group_name  = element(var.resource_group_name, count.index)
     virtual_network_name = var.virtual_network_name
     count                = length(var.name)
-    network_security_group_id = "${azurerm_network_security_group.sg.*.id, element(var.sg_name, count.index)}"  #element(var.sg_name, count.index)
+    network_security_group_id = "${element(azurerm_network_security_group.sg.*.id, count.index)}"  #element(var.sg_name, count.index)
     
 }
 
@@ -42,7 +42,7 @@ resource "azurerm_network_security_group" "sg" {
 resource "azurerm_subnet_network_security_group_association" "ass" {
     
   count                     = length(var.sg_name)  
-  subnet_id                 = "${element(azurerm_subnet.default.*.id, count.index)}" 
+  subnet_id                 = "${azurerm_subnet.default.*.id}"        #"${element(azurerm_subnet.default.*.id, count.index)}" 
   network_security_group_id = "${element(azurerm_network_security_group.sg.*.id, count.index)}" 
 }
 
