@@ -4,7 +4,7 @@ resource "azurerm_subnet" "default" {
     resource_group_name  = element(var.resource_group_name, count.index)
     virtual_network_name = var.virtual_network_name
     count                = length(var.name)
-    #network_security_group_id = "${element(azurerm_network_security_group.sg.*.id, count.index)}"
+    network_security_group_id = element(var.sg_name, count.index)
     
 }
 
