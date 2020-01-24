@@ -39,8 +39,8 @@ resource "azurerm_network_security_rule" "custom_rules" {
 #---- create resource security group association ------
 
 resource "azurerm_subnet_network_security_group_association" "ass" {
-  subnet_id                 = "${azurerm_subnet.default.*.id}"
-  network_security_group_id = "${azurerm_network_security_group.sg.*.id}"
+  subnet_id                 = "${element(azurerm_subnet.default.*.id, count.index)}" #"${azurerm_subnet.default.*.id}"
+  network_security_group_id = "${element(azurerm_network_security_group.sg.*.id, count.index)}" #"${azurerm_network_security_group.sg.*.id}"
 }
 
 
