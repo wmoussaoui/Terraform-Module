@@ -43,7 +43,7 @@ variable "custom_rules" {
   default     = []
 }
 variable "sg_name" {
- default = []
+ 
 
 }
 variable "location_var" {
